@@ -12,7 +12,7 @@ const TripsLogged = (props) => {
   const [tripsState, setTripsState] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/travel-log/v1/travels/`)
+    axios.get(`http://localhost:8000/travel-log/v1/travels/`)
     .then(res => {
       const travels = res.data.data.travels;
       setTripsState(travels);

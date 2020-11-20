@@ -12,7 +12,12 @@ mongoose.connect(DATABASE, { useNewUrlParser: true, useUnifiedTopology: true, us
   console.log('DB connection stablished successfully');
 })
 
-const port = process.env.PORT || 3000;
+
+if (process.NODE_ENV === 'production') {
+  app.use(express.static('client/build'))
+}
+
+const port = process.env.PORT || 8000;
 app.listen(port, () => {
   console.log(`App running on port ${port}`);
 })

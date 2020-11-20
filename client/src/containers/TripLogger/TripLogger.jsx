@@ -65,7 +65,7 @@ const TripLogger = (props) => {
       }
 
       //sending trip log to db
-      axios.post(`http://localhost:4000/travel-log/v1/travels/`, tripLog) 
+      axios.post(`http://localhost:8000/travel-log/v1/travels/`, tripLog) 
       .then(res => {
         console.log(res);
       })

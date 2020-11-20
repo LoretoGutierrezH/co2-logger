@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage.jsx';
 import TripsLogged from './containers/TripsLogged/TripsLogged.jsx';
 import TripLogger from './containers/TripLogger/TripLogger.jsx';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
 
 const App = () => {
   return (
