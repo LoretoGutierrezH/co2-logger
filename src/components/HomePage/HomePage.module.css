@@ -1,0 +1,9 @@
+.homePageContainer {
+  width: 60%;
+  margin: 7rem auto;
+  display: flex;
+  flex-flow: row wrap;
+  text-align: center;
+  justify-content: space-evenly;
+}
+

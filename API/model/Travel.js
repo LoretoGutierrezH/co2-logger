@@ -17,8 +17,8 @@ const travelSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Author must specify how long was the trip in km.']
   },
-  workersNames: {
-    type: Array
+  workers: {
+    type: Number
   },
   logAuthor: {
     type: String,
@@ -27,6 +27,14 @@ const travelSchema = new mongoose.Schema({
   roundTrip: {
     type: Boolean,
     required: [true, 'Author must specify if it was a round trip or not.']
+  },
+  totalCO2: {
+    type: Number,
+    required: [true, 'CO2 calculation result must be provided.']
+  },
+  CO2byWorker: {
+    type: Number,
+    required: [true, 'CO2-by-worker calculation result must be provided.']
   }
 });
 

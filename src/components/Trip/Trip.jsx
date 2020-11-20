@@ -9,9 +9,11 @@ const Trip = (props) => {
       <td>{props.travelTo}</td>
       <td>{props.transport}</td>
       <td>{props.kmTraveled}</td>
-      <td>{props.workersNames}</td>
+      <td>{props.workers}</td>
       <td>{props.logAuthor}</td>
       <td>{props.roundTrip}</td>
+      <td>{props.CO2byWorker}</td>
+      <td>{props.totalCO2}</td>
     </tr>
   );
 }
