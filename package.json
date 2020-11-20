@@ -20,7 +20,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start:dev": "cd back-end && nodemon server.js",
+    "start:dev": "cd back-end && node server.js",
     "start:client": "cd client && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
