@@ -1,0 +1,13 @@
+1-
+
+a) Creo que es más factible realizar recomendaciones basadas en el contenido de cada recurso (específicamente release_date y title), ya que esos son campos que películas y series comparten. (Asumí que con "contenido" se referían a los campos de los recursos Películas y Series únicamente)
+
+b) release_date y genre 
+
+c) release_date, title, seasons (cantidad)
+
+
+2-
+
+a) No idea :(
+b) No idea :(, pero imagino que debe ser algo que ambos tienen en común o un punto intermedio

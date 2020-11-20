@@ -6,19 +6,22 @@ import axios from 'axios';
 const TripLogger = (props) => {
   const [formState, setFormState] = useState(null);
   const [transportState, setTransportState] = useState(null);
-  const [CO2State, setCO2State] = useState(null);
+	const [CO2State, setCO2State] = useState(null);
+	const [successMessage, setSuccessMessage] = useState(null);
 
 	const fetchFormInformation = (event) => {
+		//obtiene la información ingresada en el formulario
 		event.preventDefault();
     const form = event.currentTarget;
     const logAuthor = form["formLogAuthor"].value;
 		const fromAddress = form["formFromAddress"].value;
 		const toAddress = form["formToAddress"].value;
-		const transport = transportState ? transportState : ['Metro', 0.033];
+		const transport = transportState ? transportState : ['Metro', 0.033]; //si no se detecta cambio este será el valor predeterminado
 		const kms = form["formKms"].value * 1;
 		const workers = form["formWorkers"].value * 1;
 		const roundTrip = form["formRoundtrip"].checked;
 
+		//guardando información en el estado
 		setFormState({
       logAuthor,
       fromAddress,
@@ -30,7 +33,8 @@ const TripLogger = (props) => {
     });
 
   };
-  
+	
+	//para detectar la opción seleccionada *posiblemente se pueda unir con fetchFormInformation
   const detectTransport = (event) => {
     const selectedOption = event.target.options.selectedIndex;
     const transportName = event.target.options[selectedOption].innerText
@@ -38,6 +42,7 @@ const TripLogger = (props) => {
     setTransportState([transportName, transportValue]);
   }
 
+	//calcula CO2 con la formula entregada en las instrucciones y guarda la info en su estado
   const calculateCO2 = (event) => {
 		event.preventDefault();
     let trips;
@@ -50,6 +55,7 @@ const TripLogger = (props) => {
     })
   }
 
+	//se realiza una solicitud post solo si ya se realizó el cálculo y esta información se guardó en el estado correspondiente
   useEffect(() => {
     const submitLog = () => {
       const tripLog = {
@@ -67,15 +73,25 @@ const TripLogger = (props) => {
       //sending trip log to db
       axios.post(`http://localhost:8000/travel-log/v1/travels/`, tripLog) 
       .then(res => {
-        console.log(res);
-      })
+				console.log(res);
+				setSuccessMessage("Viaje registrado correctamente.");
+			})
+			.catch(error => {
+				setSuccessMessage(`Se produjo un error durante el registro del viaje: ${error.message}`);
+			})
     }
 
     if (CO2State !== null) {
-      submitLog();  
+			submitLog();
     }
   }, [CO2State])
 
+	//para limpiar el mensaje que avisa que se registró el viaje
+	if (successMessage) {
+		setTimeout(() => {
+			setSuccessMessage(null);
+		}, 2000)
+	}
 
 	return (
 		<section>
@@ -87,7 +103,7 @@ const TripLogger = (props) => {
 			<Form
         onChange={fetchFormInformation}
         onSubmit={calculateCO2}
-				style={{ width: "80%", margin: "0 auto", minWidth: "100vh" }}
+				style={{ width: "80%", margin: "0 auto", minHeight: "120vh" }}
 			>
         <Form.Group controlId="formLogAuthor">
 					<Form.Label>Autor</Form.Label>
@@ -142,6 +158,7 @@ const TripLogger = (props) => {
 				<Button className="btn btn-success" variant="primary" type="submit">
 					Enviar
 				</Button>
+				<h4 style={{marginTop: '1rem', color: 'green', fontWeight: 'bold'}}>{successMessage}</h4>
 			</Form>
 		</section>
 	);
