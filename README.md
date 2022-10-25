@@ -4,7 +4,6 @@ Aplicación creada con Node, Express y MongoDB para el back-end (solo GET all y 
 
 - Todos los campos son obligatorios a nivel de modelo
 - No hice deploy del back-end, pero sí hice deploy del front-end al hosting de Firebase
-- No hice la autenticación (la podría haber hecho con Firebase, pero aún no sé hacerlo con node, express y mongo). Supongo que debiese haber creado un modelo User con ciertas propiedades y un rol que solo le permitiera ver los viajes que el usuario conectado había registrado. TAmbién debería haber creado un usuario con un rol de administrador para que esa cuenta tuviera acceso a todos los viejes registrados por todos los usuarios
 - En la propiedad workers solo guardé la cantidad de pasajeros por viaje
 
 Para probar la app, seguir los siguientes pasos:
